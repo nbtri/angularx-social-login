@@ -13,14 +13,14 @@ export class FacebookLoginProvider extends BaseLoginProvider {
     private opt: LoginOpt = { scope: 'email,public_profile' },
     private locale: string = 'vi_VN',
     private fields: string = 'name,email,picture,first_name,last_name',
-    private version: string = 'v2.9'
+    private version: string = 'v2.9',
     private sdk: string = 'xfbml.customerchat'
   ) { super(); }
 
   initialize(): Promise<void> {
     return new Promise((resolve, reject) => {
       this.loadScript(FacebookLoginProvider.PROVIDER_ID,
-        `//connect.facebook.net/${this.locale}/${sdk}.js`,
+        `//connect.facebook.net/${this.locale}/${this.sdk}.js`,
         () => {
           FB.init({
             appId: this.clientId,
