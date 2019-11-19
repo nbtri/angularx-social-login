@@ -6,5 +6,6 @@ export interface LoginProvider {
   getLoginStatus(): Promise<SocialUser>;
   signIn(opt?: LoginOpt): Promise<SocialUser>;
   signOut(): Promise<any>;
+  asyncInit(): Promise<void>;
 }
 

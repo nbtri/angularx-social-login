@@ -12,6 +12,11 @@ export class GoogleLoginProvider extends BaseLoginProvider {
 
   constructor(private clientId: string, private opt: LoginOpt = {scope: 'email'}) { super(); }
 
+  asyncInit(): Promise<void> {
+    return new Promise((resolve, reject) => {
+    });
+  }
+
   initialize(): Promise<void> {
     return new Promise((resolve, reject) => {
       this.loadScript(GoogleLoginProvider.PROVIDER_ID,

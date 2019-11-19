@@ -17,18 +17,42 @@ export class FacebookLoginProvider extends BaseLoginProvider {
     private sdk: string = 'xfbml.customerchat'
   ) { super(); }
 
+  asyncInit(): Promise<void> {
+    return new Promise((resolve, reject) => {
+        FB.init({
+          appId: this.clientId,
+          autoLogAppEvents: true,
+          cookie: true,
+          xfbml: true,
+          version: this.version
+        });
+      });
+  }
+
   initialize(): Promise<void> {
     return new Promise((resolve, reject) => {
+      /*$window.fbAsyncInit = () => { 
+        FB.init({
+          appId: this.clientId,
+          autoLogAppEvents: true,
+          cookie: true,
+          xfbml: true,
+          version: this.version
+        });
+      }*/
+
       this.loadScript(FacebookLoginProvider.PROVIDER_ID,
         `//connect.facebook.net/${this.locale}/${this.sdk}.js`,
         () => {
-          FB.init({
+          /*FB.init({
             appId: this.clientId,
             autoLogAppEvents: true,
             cookie: true,
             xfbml: true,
             version: this.version
-          });
+          });*/
+          console.log("Loaded FB Customer-chat sdk");
+
           // FB.AppEvents.logPageView(); #FIX for #18
 
           this._readyState.next(true);

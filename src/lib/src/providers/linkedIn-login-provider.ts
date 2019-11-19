@@ -17,6 +17,11 @@ export class LinkedInLoginProvider extends BaseLoginProvider {
         super();
     }
 
+    asyncInit(): Promise<void> {
+        return new Promise((resolve, reject) => {
+        });
+    }
+
     initialize(): Promise<void> {
         let inner_text = '';
 
