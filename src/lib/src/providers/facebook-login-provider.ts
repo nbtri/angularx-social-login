@@ -14,11 +14,14 @@ export class FacebookLoginProvider extends BaseLoginProvider {
     private locale: string = 'vi_VN',
     private fields: string = 'name,email,picture,first_name,last_name',
     private version: string = 'v2.9',
-    private sdk: string = 'xfbml.customerchat'
+    private sdk: string = 'sdk/xfbml.customerchat'
   ) { super(); }
 
   initialize(): Promise<void> {
     return new Promise((resolve, reject) => {
+      this._readyState.next(true);
+      resolve();
+      /*
       this.loadScript(FacebookLoginProvider.PROVIDER_ID,
         `//connect.facebook.net/${this.locale}/${this.sdk}.js`,
         () => {
@@ -34,6 +37,7 @@ export class FacebookLoginProvider extends BaseLoginProvider {
           this._readyState.next(true);
           resolve();
         });
+      */
     });
   }
 
